@@ -15,17 +15,20 @@ Codes for retrieving and processing politcal platforms from fsd.pohtiva.tuni.fi.
 
 ## Folders and files for input and output (not included here):
 
-### **./wordlists/** -- put wordlists and read them from here
+### **./wordlists/** 
+-- put wordlists and read them from here
 
 **keywords.txt** -- includes keywords, line separated, to be used in the searches
 
 **stopwords.txt** -- includes words, line separated, to be excluded from the searches
 
-### **./datasources/** -- a folder for storing address lists etc.
+### **./datasources/** 
+-- a folder for storing address lists etc.
 
 **pohtiva_address_list.txt** -- file for a list of pohtiva url's
 
-## **./poht_data/** -- a folder for saving the Pohtiva dataframe and the programmes in .txt and .html
+### **./poht_data/** 
+-- a folder for saving the Pohtiva dataframe and the programmes in .txt and .html
 
 **poht_data.xlsx** -- file for storing the dataframes -- remove this later
 
