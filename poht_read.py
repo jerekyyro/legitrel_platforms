@@ -3,7 +3,6 @@ import pandas as pd
 import readerswriters as rds
 import re
 import ast
-#from bs4 import BeautifulSoup, Comment
 
 __author__ = "Jere Kyyrö"
 __version__ = "0.1"
@@ -37,13 +36,7 @@ def poht_read(fname: str):
     mystr = str(mydata[0])
     mybytes = mydata[1]
 
-
-
-
-    #test print
-    #print(mystr)
-
-    #metatiedot tässä muodossa:
+    #metadata in following format:
     # <div class="large-12 columns">
     #   <ul class="no-bullet">
     #       <li><b>Puolue:</b> Kristillisdemokraatit</li>
@@ -53,7 +46,6 @@ def poht_read(fname: str):
     #   </ul>
 
     # read the party name and save as string -- <h1>
-    # partyname = rds.lineitersearch(mystr, "<li><b>Puolue:</b>", "</li>").strip() 
     try:
         partyname = rds.lineitersearch(mystr, "<li><b>Puolue:</b>", "</li>").strip() 
     except:
@@ -63,7 +55,7 @@ def poht_read(fname: str):
             partyname = None
 
     # read the programme title and save as string -- <h2>
-    # progtitle = rds.lineitersearch(mystr, "<li><b>Otsikko:</b>", "</li>").strip()
+    
     try:
         progtitle = rds.lineitersearch(mystr, "<li><b>Otsikko:</b>", "</li>").strip()
     except:
@@ -72,10 +64,8 @@ def poht_read(fname: str):
         except:
             progtitle = None
 
-    # progtitle_sve = progtitle.replace(".,?", "")
     
     # read the programme type and save as string
-    # progtype = rds.lineitersearch(mystr, "<li><b>Ohjelmatyyppi:</b>", "</li>").strip()
     try:
         progtype = rds.lineitersearch(mystr, "<li><b>Ohjelmatyyppi:</b>", "</li>").strip()
     except:
@@ -83,6 +73,7 @@ def poht_read(fname: str):
             progtype = rds.lineitersearch(mystr, "<li>Ohjelmatyyppi:", "</li>").strip()
         except:
             progtype = None
+    
     # read the programme year and save as int
     try:
         progyear = int(rds.lineitersearch(mystr, "<li><b>Vuosi:</b>", "</li>"))
@@ -103,14 +94,12 @@ def poht_read(fname: str):
     
 
     #split the mystr form the <body> tag
-    #NB! This should be done from <main> onwards!
     
     mystr_lst = mystr.split("<main>")
     mystr = mystr_lst[1]
     mystr_lst2 = mystr.split("</main>")
     mystr = mystr_lst2[0]
 
-    # # would it be better to use bsoup here?
     # parser = BeautifulSoup(mystr, 'html.parser')
     # body = parser.find_all("main")
     # # useful stuff:
@@ -193,8 +182,7 @@ def poht_read(fname: str):
                                      
     # done reading here
     
-    # statistics
-
+    
     # add to each row the counts of wrds and chars in the programme -- do not include html tags etc!
     
     sents["chars"] = sents["sentence"].str.len()
