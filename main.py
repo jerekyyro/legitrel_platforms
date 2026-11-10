@@ -10,9 +10,7 @@ import time
 starttime = time.time()
 print("Starting time at", time.ctime(starttime))
 
-
-#addr_list = rewri.readlines("datasources/pohtiva_address_list.txt")
-addr_list = rewri.readlines("datasources/pohtiva_address_list_3.txt")
+addr_list = rewri.readlines("datasources/pohtiva_address_list.txt")
 
 old_sents = pd.read_excel("poht_data/programmes.xlsx", index_col=0)
 old_addresses = list(old_sents['url'])
